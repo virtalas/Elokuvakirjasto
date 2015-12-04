@@ -9,6 +9,5 @@ MovieApp.service('OMDbService', function ($http) {
         if (title == "" && year != "") {
             return $http.get('http://www.omdbapi.com/', {params: {y: year}});
         }
-//        return $http.get('http://www.omdbapi.com/?s=lord');
     }
 });
