@@ -9,4 +9,14 @@ MovieApp.service('FirebaseService', function ($firebaseArray) {
     this.addMovie = function (movie) {
         movies.$add(movie);
     }
+
+    this.editMovie = function (movie) {
+        movies.$save(movie);
+    }
+
+    this.getMovie = function (key, done) {
+        movies.$loaded(function () {
+            done(movies.$getRecord(key));
+        });
+    }
 });
