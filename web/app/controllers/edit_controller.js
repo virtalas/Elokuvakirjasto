@@ -1,14 +1,15 @@
 MovieApp.controller('EditController', function ($scope, FirebaseService, $location, $routeParams) {
-    $scope.movies = FirebaseService.getMovies();
+//    $scope.movies = FirebaseService.getMovies();
 
     FirebaseService.getMovie($routeParams.key, function (movie) {
         $scope.movie = movie;
-    });
 
-    $scope.title = $scope.movie.title;
-    $scope.director = $scope.movie.director;
-    $scope.year = $scope.movie.year;
-    $scope.description = $scope.movie.description;
+        $scope.title = $scope.movie.title;
+        $scope.director = $scope.movie.director;
+        $scope.year = $scope.movie.year;
+        $scope.description = $scope.movie.description;
+
+    });
 
     $scope.editMovie = function () {
         if ($scope.title !== "" && $scope.director !== "" && $scope.year !== "" && $scope.description !== "") {
