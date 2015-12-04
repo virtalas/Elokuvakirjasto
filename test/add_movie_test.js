@@ -15,9 +15,14 @@ describe('Add movie', function () {
                 addMovie: function (movie) {
                     movies.push(movie);
                 },
-                
                 getMovies: function () {
                     return movies;
+                },
+                editMovie: function (movie) {
+                },
+                removeMovie: function (movie) {
+                },
+                getMovie: function (key, done) {
                 }
             }
         })();
@@ -55,7 +60,7 @@ describe('Add movie', function () {
 
         scope.addMovie();
         expect(FirebaseServiceMock.addMovie).toHaveBeenCalled();
-        
+
         expect(scope.movies.length).toBe(1);
     });
 
@@ -70,10 +75,10 @@ describe('Add movie', function () {
         scope.director = "";
         scope.year = "";
         scope.description = "";
-        
+
         scope.addMovie();
         expect(FirebaseServiceMock.addMovie).not.toHaveBeenCalled();
-        
+
         expect(scope.movies.length).toBe(0);
     });
 });

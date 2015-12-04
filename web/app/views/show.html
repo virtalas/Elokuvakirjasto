@@ -1,0 +1,21 @@
+<h3>{{movie.title}}</h3>
+
+
+<h4>Ohjaaja</h4>
+<p>
+    {{movie.director}}
+</p>
+
+<h4>Julkaisuvuosi</h4>
+<p>
+    {{movie.year}}
+</p>
+
+<h4>Kuvaus</h4>
+<p>
+    {{movie.description}}
+</p>
+
+<p>
+    <a ng-href="#/movies/{{movie.$id}}/edit">Muokkaa</a>
+</p>

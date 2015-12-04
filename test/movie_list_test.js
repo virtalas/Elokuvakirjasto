@@ -13,7 +13,8 @@ describe('Movie list', function () {
                     title: "title",
                     director: "dir",
                     year: "1234",
-                    description: "desc"
+                    description: "desc",
+                    id: "abc123"
                 }
             ];
 
@@ -24,6 +25,20 @@ describe('Movie list', function () {
                 },
                 getMovies: function () {
                     return movies;
+                },
+                editMovie: function (movie) {
+                },
+                removeMovie: function (movie) {
+                    if (movie.id == 'abc123') {
+                        movies.splice(0,1);
+                    }
+                },
+                getMovie: function (key, done) {
+                    if (key == 'abc123') {
+                        done(movies[0]);
+                    } else {
+                        done(null);
+                    }
                 }
             }
         })();
@@ -63,6 +78,7 @@ describe('Movie list', function () {
      * käyttämällä toBeCalled-oletusta.
      */
     it('should be able to remove a movie', function () {
-        expect(true).toBe(false);
+        scope.removeMovie(0);
+        expect(scope.movies.length).toBe(0);
     });
 });

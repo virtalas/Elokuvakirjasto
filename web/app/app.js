@@ -14,6 +14,14 @@ MovieApp.config(function ($routeProvider) {
                 controller: 'AddController',
                 templateUrl: 'app/views/add.html'
             })
+            .when('/movies/:key', {
+                controller: 'ShowController',
+                templateUrl: 'app/views/show.html'
+            })
+            .when('/movies/:key/edit', {
+                controller: 'EditController',
+                templateUrl: 'app/views/edit.html'
+            })
             .otherwise({
                 redirectTo: '/'
             });

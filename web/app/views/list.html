@@ -2,6 +2,9 @@
 
 <div ng-controller="ListController">
     <ul>
-        <li ng-repeat="movie in movies">{{movie.title}}</li>
+        <li ng-repeat="movie in movies">
+            <a ng-href="#/movies/{{movie.$id}}">{{movie.title}}</a>
+            (<a href="" ng-click="removeMovie($index)">poista</a>)
+        </li>
     </ul>
 </div>
