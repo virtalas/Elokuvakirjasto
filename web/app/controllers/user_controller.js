@@ -15,7 +15,7 @@ MovieApp.controller('UserController', function ($scope, $location, Authenticatio
                 .then(function () {
                     AuthenticationService.logUserIn($scope.newEmail, $scope.newPassword)
                             .then(function () {
-                                $location.path('/movies');
+                                location.reload();
                             });
                 })
                 .catch(function () {
