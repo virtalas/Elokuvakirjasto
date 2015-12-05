@@ -3,23 +3,23 @@
 <div ng-controller="UserController">
     <p>{{message}}</p>
 
-    Sähköposti<br>
-    <input type="text" ng-model="email"><br>
-    Salasana<br>
-    <input type="password" ng-model="password"><br>
+    <label>Sähköposti</label>
+    <input class="form-control" type="text" ng-model="email"><br>
+    <label>Salasana</label>
+    <input class="form-control" type="password" ng-model="password"><br>
 
     <a href="#/movies">
-        <button ng-click="logIn()">Kirjaudu sisään</button>
+        <button class="btn btn-primary" ng-click="logIn()">Kirjaudu sisään</button>
     </a>
 
     <h2>Rekisteröidy</h2>
 
-    Sähköposti<br>
-    <input type="text" ng-model="newEmail"><br>
-    Salasana<br>
-    <input type="password" ng-model="newPassword"><br>
+    <label>Sähköposti</label>
+    <input class="form-control" type="text" ng-model="newEmail"><br>
+    <label>Salasana</label>
+    <input class="form-control" type="password" ng-model="newPassword"><br>
 
     <a href="#/movies">
-        <button ng-click="register()">Rekisteröidy</button>
+        <button class="btn btn-primary" ng-click="register()">Rekisteröidy</button>
     </a>
 </div>

@@ -2,33 +2,49 @@
 
 <div ng-controller="ListController">
     
-    <span ng-if="movies.length == 0">Haetaan elokuvia...</span>
-    
-    <ul>
-        <li ng-repeat="movie in movies">
-            <a ng-href="#/movies/{{movie.$id}}">{{movie.title}}</a>
-            <span ng-if="userLoggedIn"> – (<a href="" ng-click="removeMovie($index)">poista</a>)</span>
-        </li>
-    </ul>
+    <table class="table">
+        <tr>
+            <th>Nimi</th>
+            <th>Julkaisuvuosi</th>
+            <th></th>
+        </tr>
+        <tr ng-if="movies.length == 0">
+            <td>Haetaan elokuvia...</td>
+        </tr>
+        <tr ng-repeat="movie in movies">
+            <td><a ng-href="#/movies/{{movie.$id}}">{{movie.title}}</a></td>
+            <td>{{movie.year}}</td>
+            <td><button ng-if="userLoggedIn" class="btn btn-danger btn-sm" href="" ng-click="removeMovie($index)">Poista</button></td>
+        </tr>
+    </table>
 
 
     <h3>Etsi OMDb:stä</h3>
 
-    Nimi: <input type="text" ng-model="searchTitle" id="searchTitle">
-    <br>
-    Julkaisuvuosi: <input type="text" ng-model="searchYear" id="searchYear">
+    <label>Nimi</label>
+    <input class="form-control" type="text" ng-model="searchTitle" id="searchTitle">
+    <label>Julkaisuvuosi</label>
+    <input class="form-control" type="text" ng-model="searchYear" id="searchYear">
     <br>
 
-    <ng-pluralize ng-if="searchTitle || searchYear" count="omdbMovies.length"
-                  when="{'0': 'Haulla ei löytynyt elokuvia.',
-                  'one': 'Haulla löytyi 1 elokuva.',
-                  'other': 'Haulla löytyi {} elokuvaa.'}">
-    </ng-pluralize>
-    <ul>
-
-        <li ng-repeat="mov in omdbMovies">
-            <a ng-href="http://www.imdb.com/title/{{mov.imdbID}}">{{mov.Title}} ({{mov.Year}})</a>
-        </li>
-    </ul>
+    <label>
+        <ng-pluralize ng-if="searchTitle || searchYear" count="omdbMovies.length"
+                      when="{'0': 'Haulla ei löytynyt elokuvia.',
+                      'one': 'Haulla löytyi 1 elokuva.',
+                      'other': 'Haulla löytyi {} elokuvaa.'}">
+        </ng-pluralize>
+    </label>
+    
+    <table class="table" ng-if="searchTitle || searchYear">
+        <tr>
+            <th>Nimi</th>
+            <th>Julkaisuvuosi</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="mov in omdbMovies">
+            <td><a ng-href="http://www.imdb.com/title/{{mov.imdbID}}">{{mov.Title}}</a></td>
+            <td>{{mov.Year}}</td>
+        </tr>
+    </table>
 
 </div>

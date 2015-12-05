@@ -3,7 +3,7 @@
 <form name="infoForm" ng-controller="EditController">
     <p>
         <label>Nimi</label>
-        <input name="title" type="text" ng-model="title" required ng-minlength="1">
+        <input class="form-control" name="title" type="text" ng-model="title" required ng-minlength="1">
     </p>
     <div ng-show="infoForm.title.$invalid && infoForm.title.$dirty">
         Nimi ei ole validi!
@@ -11,7 +11,7 @@
 
     <p>
         <label>Ohjaaja</label>
-        <input name="director" type="text" ng-model="director" required ng-minlength="1">
+        <input class="form-control" name="director" type="text" ng-model="director" required ng-minlength="1">
     </p>
     <div ng-show="infoForm.director.$invalid && infoForm.director.$dirty">
         Ohjaaja ei ole validi!
@@ -19,7 +19,7 @@
 
     <p>
         <label>Julkaisuvuosi</label>
-        <input name="year" type="text" ng-model="year" required ng-pattern="/^[0-9]{4}$/">
+        <input class="form-control" name="year" type="text" ng-model="year" required ng-pattern="/^[0-9]{4}$/">
     </p>
     <div ng-show="infoForm.year.$invalid && infoForm.year.$dirty">
         Julkaisuvuosi ei ole validi!
@@ -27,13 +27,13 @@
 
     <p>
         <label>Kuvaus</label>
-        <input name="description" type="text" ng-model="description" required ng-minlength="1">
+        <textarea class="form-control" name="description" type="text" ng-model="description" required ng-minlength="1"></textarea>
     </p>
     <div ng-show="infoForm.description.$invalid && infoForm.description.$dirty">
         Kuvaus ei ole validi!
     </div>
 
     <p>
-        <input type="submit" value="Tallenna" ng-disabled="infoForm.$invalid" ng-click="editMovie()">
+        <input class="btn btn-primary" type="submit" value="Tallenna" ng-disabled="infoForm.$invalid" ng-click="editMovie()">
     </p>
 </form>
