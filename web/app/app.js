@@ -1,6 +1,6 @@
 var MovieApp = angular.module('MovieApp', ['firebase', 'ngRoute']);
 
-MovieApp.config(function ($routeProvider, $httpProvider) {
+MovieApp.config(function ($routeProvider) {
     $routeProvider
             .when('/', {
                 controller: 'ListController',
@@ -25,6 +25,8 @@ MovieApp.config(function ($routeProvider, $httpProvider) {
             .otherwise({
                 redirectTo: '/'
             });
-
-    delete $httpProvider.defaults.headers.common["X-Requested-With"];
 });
+
+MovieApp.config(['$httpProvider', function($httpProvider) {
+  delete $httpProvider.defaults.headers.common["X-Requested-With"]
+}]);
