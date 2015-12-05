@@ -1,6 +1,9 @@
 <h3>Elokuvat</h3>
 
 <div ng-controller="ListController">
+    
+    <span ng-if="movies.length == 0">Haetaan elokuvia...</span>
+    
     <ul>
         <li ng-repeat="movie in movies">
             <a ng-href="#/movies/{{movie.$id}}">{{movie.title}}</a>
