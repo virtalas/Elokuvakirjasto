@@ -12,7 +12,12 @@ MovieApp.config(function ($routeProvider) {
             })
             .when('/movies/new', {
                 controller: 'AddController',
-                templateUrl: 'app/views/add.html'
+                templateUrl: 'app/views/add.html',
+                resolve: {
+                    currentAuth: function (AuthenticationService) {
+                        return AuthenticationService.checkLoggedIn();
+                    }
+                }
             })
             .when('/movies/:key', {
                 controller: 'ShowController',
@@ -20,13 +25,31 @@ MovieApp.config(function ($routeProvider) {
             })
             .when('/movies/:key/edit', {
                 controller: 'EditController',
-                templateUrl: 'app/views/edit.html'
+                templateUrl: 'app/views/edit.html',
+                resolve: {
+                    currentAuth: function (AuthenticationService) {
+                        return AuthenticationService.checkLoggedIn();
+                    }
+                }
+            })
+            .when('/login', {
+                controller: 'UserController',
+                templateUrl: 'app/views/login.html'
             })
             .otherwise({
                 redirectTo: '/'
             });
 });
 
-MovieApp.config(['$httpProvider', function($httpProvider) {
-  delete $httpProvider.defaults.headers.common["X-Requested-With"]
-}]);
+MovieApp.config(['$httpProvider', function ($httpProvider) {
+        delete $httpProvider.defaults.headers.common["X-Requested-With"]
+    }]);
+
+MovieApp.run(function (AuthenticationService, $rootScope) {
+    $rootScope.logOut = function () {
+        AuthenticationService.logUserOut();
+        location.reload();
+    };
+
+    $rootScope.userLoggedIn = AuthenticationService.getUserLoggedIn();
+});

@@ -1,4 +1,8 @@
-MovieApp.controller('AddController', function ($scope, FirebaseService, $location) {
+MovieApp.controller('AddController', function ($scope, FirebaseService, $location, AuthenticationService) {
+    if (!AuthenticationService.getUserLoggedIn()) {
+        $location.path('/login');
+    }
+
     $scope.movies = FirebaseService.getMovies();
 
     $scope.addMovie = function () {

@@ -4,7 +4,7 @@
     <ul>
         <li ng-repeat="movie in movies">
             <a ng-href="#/movies/{{movie.$id}}">{{movie.title}}</a>
-            (<a href="" ng-click="removeMovie($index)">poista</a>)
+            <span ng-if="userLoggedIn"> – (<a href="" ng-click="removeMovie($index)">poista</a>)</span>
         </li>
     </ul>
 
@@ -15,8 +15,14 @@
     <br>
     Julkaisuvuosi: <input type="text" ng-model="searchYear" id="searchYear">
     <br>
-    {{searchResults}}
+
+    <ng-pluralize ng-if="searchTitle || searchYear" count="omdbMovies.length"
+                  when="{'0': 'Haulla ei löytynyt elokuvia.',
+                  'one': 'Haulla löytyi 1 elokuva.',
+                  'other': 'Haulla löytyi {} elokuvaa.'}">
+    </ng-pluralize>
     <ul>
+
         <li ng-repeat="mov in omdbMovies">
             <a ng-href="http://www.imdb.com/title/{{mov.imdbID}}">{{mov.Title}} ({{mov.Year}})</a>
         </li>

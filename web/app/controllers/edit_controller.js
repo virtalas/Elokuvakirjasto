@@ -1,5 +1,7 @@
-MovieApp.controller('EditController', function ($scope, FirebaseService, $location, $routeParams) {
-//    $scope.movies = FirebaseService.getMovies();
+MovieApp.controller('EditController', function ($scope, FirebaseService, $location, $routeParams, AuthenticationService) {
+    if (!AuthenticationService.getUserLoggedIn()) {
+        $location.path('/login');
+    }
 
     FirebaseService.getMovie($routeParams.key, function (movie) {
         $scope.movie = movie;
